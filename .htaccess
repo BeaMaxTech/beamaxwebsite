@@ -1,0 +1,15 @@
+# Turn Rewrite Engine On
+RewriteEngine on
+
+# Rewrite for contact.php
+RewriteRule ^contact_us$  contact.php
+RewriteRule ^home$   index.php 
+RewriteRule ^index$   index.php 
+RewriteRule ^about$   about.php 
+RewriteRule ^about-us$   about.php
+
+RewriteRule ^ict_academy$   ict_academy.php 
+RewriteRule ^web_development$   web_development.php 
+RewriteRule ^app_development$   app_development.php 
+RewriteRule ^graphic_design$   graphic_design.php 
+RewriteRule ^consultancy$   consultancy.php 
