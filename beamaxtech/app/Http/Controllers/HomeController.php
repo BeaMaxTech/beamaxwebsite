@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class HomeController extends Controller
 {
+
+    
     /**
      * Create a new controller instance.
      *
@@ -23,6 +26,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $students = User::where("role_id",1)->get();
+
+        switch(\Auth::user()->role_id){
+            case 1:
+                return view('login');
+                
+            case 2:
+                return view('home.staff.index',compact('students'));
+                
+            case 2:
+                return view('home.staff.index',compact('students'));
+                
+        }
+        
     }
 }

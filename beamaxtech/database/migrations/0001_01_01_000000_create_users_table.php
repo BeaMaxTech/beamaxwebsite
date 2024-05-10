@@ -35,6 +35,9 @@ return new class extends Migration
             $table->double('salary')->nullable();
             $table->string('job_title')->nullable();
 
+            $table->string('gender')->nullable();
+            $table->string('state')->nullable();
+
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

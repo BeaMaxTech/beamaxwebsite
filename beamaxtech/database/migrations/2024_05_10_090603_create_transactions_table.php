@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->integer("user_id");
             $table->double("amount");
-            $table->string("status");
-            $table->string("transaction_type");
-            $table->integer("receipt_id");
+            $table->string("status")->default("pending");
+            $table->string("type");
+            $table->integer("receipt_id")->nullable();
             $table->string("staff_id");
+            $table->string("description");
             $table->string('mode_of_payment')->nullable();
             $table->timestamps();
         });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Auth;
 
 class TransactionController extends Controller
 {
@@ -18,9 +19,13 @@ class TransactionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($id = null)
     {
         //
+        if($id != null){
+            $user =  User::find($id);
+        return View("home.add_payment", compact('user'));
+    }
     }
 
     /**
@@ -28,7 +33,42 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
+
         //
+
+        $validator = Validator::make($request->all(),[
+            'description' => ['required', 'string', 'max:255'],
+            'mode_of_payment' => ['required', 'string'],
+            'user_id' => ['required', 'string', 'min:8', 'confirmed'],
+
+            'amount' => ['required', 'string', 'max:255'],
+            'type' => ['required', 'string', 'max:255'],
+
+            
+            
+            
+        ]);
+
+        
+
+        
+
+      
+
+      if ($validator->fails())
+       
+      {
+        // pass validator object in withErrors method & also withInput it should be null by default
+         return redirect()->back()->withErrors($validator)->withInput();
+      }
+        $user = User::find($request->user_id);
+
+        $request['staff_id'] = Auth::user()->id;
+
+        $transaction = Transcation::create($user->all());
+
+      return redirect()->back()->with(['msg' => ' Created Successfully']);
+
     }
 
     /**
