@@ -30,7 +30,7 @@ class HomeController extends Controller
 
         switch(\Auth::user()->role_id){
             case 1:
-                return view('login');
+                return view('home.staff.index',compact('students'));
                 
             case 2:
                 return view('home.staff.index',compact('students'));

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 
 class TransactionController extends Controller
 {
@@ -39,7 +41,7 @@ class TransactionController extends Controller
         $validator = Validator::make($request->all(),[
             'description' => ['required', 'string', 'max:255'],
             'mode_of_payment' => ['required', 'string'],
-            'user_id' => ['required', 'string', 'min:8', 'confirmed'],
+            'user_id' => ['required', 'string'],
 
             'amount' => ['required', 'string', 'max:255'],
             'type' => ['required', 'string', 'max:255'],
@@ -65,7 +67,7 @@ class TransactionController extends Controller
 
         $request['staff_id'] = Auth::user()->id;
 
-        $transaction = Transcation::create($user->all());
+        $transaction = Transaction::create($request->all());
 
       return redirect()->back()->with(['msg' => ' Created Successfully']);
 
@@ -101,5 +103,57 @@ class TransactionController extends Controller
     public function destroy(Transaction $transaction)
     {
         //
+    }
+    public function expenses()
+    {
+        //
+        $transactions = Transaction::where("type","expenses")->orderBy("id","Desc")->get();
+        return View("home.expenses",compact('transactions'));
+    }
+    public function creatExpenses(Transaction $transaction)
+    {
+        //
+        return View("home.add_expenses");
+    }
+    public function addExpenses(Request $request)
+    {
+        //
+
+        //
+
+        $validator = Validator::make($request->all(),[
+            'description' => ['required', 'string', 'max:255'],
+            'mode_of_payment' => ['required', 'string'],
+            
+
+            'amount' => ['required', 'string', 'max:255'],
+            'type' => ['required', 'string', 'max:255'],
+
+            
+            
+            
+        ]);
+
+        
+
+        
+
+      
+
+      if ($validator->fails())
+       
+      {
+        // pass validator object in withErrors method & also withInput it should be null by default
+         return redirect()->back()->withErrors($validator)->withInput();
+      }
+        $user = User::find($request->user_id);
+
+        $request['staff_id'] = Auth::user()->id;
+        $request['user_id'] = Auth::user()->id;
+        $request['type'] = "expenses";
+
+        $transaction = Transaction::create($request->all());
+
+      return redirect()->back()->with(['msg' => ' Created Successfully']);
     }
 }

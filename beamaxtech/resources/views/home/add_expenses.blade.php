@@ -16,8 +16,8 @@
             <div class="widget-header">
                 <div class="row">
                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                        <h4>Add deposit to {{$user->fullname}}</h4>
-                        <h6>Payment Informaion </h6>
+                        <h4>Record expenses</h4>
+                       
                     </div>
                 </div>
             </div>
@@ -26,16 +26,14 @@
                @include('layouts.alert');
                 <form method="POST" >
                     @csrf
-                    <div class="col-md-6">
-                            <input type="hidden" class="form-control" placeholder="user_id" value="{{$user->id}}"  name="user_id" >
-                        </div>
+                   
 
                     <div class="form-row mb-4">
                         <div class="col-md-6">
                             <input type="number" class="form-control" placeholder="amount" name="amount" value="{{ old('amount') }}">
                         </div>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" placeholder="transaction type" value="deposit"  name="type" value="{{ old('type') }}">
+                            <input type="text" class="form-control" readonly placeholder="transaction type" value="expenses"  name="type" value="{{ old('type') }}">
                         </div>
                     </div>
 
@@ -56,9 +54,9 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12">
+                    <!-- <div class="col-md-12">
                             <input type="text" class="form-control" placeholder="receipt_id"  name="receipt_id" value="{{ old('receipt_id') }}">
-                        </div>
+                        </div> -->
                    
 
 

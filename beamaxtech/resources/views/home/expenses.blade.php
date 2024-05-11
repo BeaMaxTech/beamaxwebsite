@@ -11,7 +11,7 @@
             <div id="zero-config_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
                 <div class="dt--top-section">
                     <div class="w-title">
-                        <h3>List Student</h3>
+                        <h3>Expenses</h3>
                     </div>
                     <div class="row">
                         
@@ -35,19 +35,23 @@
                             <tr role="row">
                                 <th class="sorting_asc" tabindex="0" aria-controls="zero-config" rowspan="1" colspan="1"
                                     aria-sort="ascending" aria-label="Name: activate to sort column descending"
-                                    style="width: 101px;">Name</th>
+                                    style="width: 101px;">amount</th>
                                 <th class="sorting" tabindex="0" aria-controls="zero-config" rowspan="1" colspan="1"
                                     aria-label="Position: activate to sort column ascending" style="width: 156px;">
-                                    courses</th>
+                                    description</th>
                                
                                 <th class="sorting" tabindex="0" aria-controls="zero-config" rowspan="1" colspan="1"
-                                    aria-label="Age: activate to sort column ascending" style="width: 30px;">ID</th>
+                                    aria-label="Age: activate to sort column ascending" style="width: 30px;">status</th>
+                               
                                
                                 <th class="sorting" tabindex="0" aria-controls="zero-config" rowspan="1" colspan="1"
-                                    aria-label="Salary: activate to sort column ascending" style="width: 60px;">Amount paid
+                                    aria-label="Salary: activate to sort column ascending" style="width: 60px;">mode of payment
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="zero-config" rowspan="1" colspan="1"
-                                    aria-label="Salary: activate to sort column ascending" style="width: 60px;">date started
+                                    aria-label="Salary: activate to sort column ascending" style="width: 60px;">staff_id
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="zero-config" rowspan="1" colspan="1"
+                                    aria-label="Salary: activate to sort column ascending" style="width: 60px;">date_created
                                 </th>
                                 <th class="no-content sorting" tabindex="0" aria-controls="zero-config" rowspan="1"
                                     colspan="1" aria-label="Actions: activate to sort column ascending"
@@ -56,24 +60,23 @@
                         </thead>
                         <tbody>
 
-                        @foreach($users as $user)
+                        @foreach($transactions as $transaction)
                             <tr role="row">
-                                <td class="sorting_1">{{$user->fullname}}</td>
-                                <td>{{$user->courses}}</td>
+                                <td class="sorting_1">{{number_format($transaction->amount)}}</td>
+                                <td>{{$transaction->description}}</td>
                                
-                                <td>{{$user->user_id}}</td>
+                                <td>{{$transaction->status}}</td>
                                
-                                <td>{{number_format($user->total_amount)}}</td>
-                                <td>{{$user->created_at}}</td>
+                                
+                                <td>{{$transaction->mode_of_payment}}</td>
+                                <td>{{$transaction->staff_id}}</td>
+                                <td>{{$transaction->created_at}}</td>
                                 <td>
                                     <div class="btn-group mb-4 mr-2" role="group">
                                         <button id="btndefault" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
                                         <div class="dropdown-menu" aria-labelledby="btndefault">
                                             <a href="javascript:void(0);" class="dropdown-item"><i class="flaticon-home-fill-1 mr-1"></i>Action</a>
-                                            <a href="/staff/add_payment/{{$user->id}}" class="dropdown-item"><i class="flaticon-gear-fill mr-1"></i>Add Payment</a>
-                                            <a href="/student/transaction/{{$user->id}}" class="dropdown-item"><i class="flaticon-gear-fill mr-1"></i>View Transactions</a>
-                                            <a href="/user_details/{{$user->id}}" class="dropdown-item"><i class="flaticon-gear-fill mr-1"></i>View Details</a>
-                                            <a href="/admin/single_user/{{$user->id}}" class="dropdown-item"><i class="flaticon-gear-fill mr-1"></i>Edit</a>
+                                           
                                             <!-- <a href="javascript:void(0);" class="dropdown-item"><i class="flaticon-gear-fill mr-1"></i>View more details</a> -->
                                             <a href="javascript:void(0);" class="dropdown-item"><i class="flaticon-bell-fill-2 mr-1"></i>Delete</a>
                                             <!-- <a href="javascript:void(0);" class="dropdown-item"><i class="flaticon-dots mr-1"></i>Separated link</a> -->

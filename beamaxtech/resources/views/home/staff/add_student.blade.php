@@ -131,7 +131,7 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                            <input type="number" class="form-control" placeholder="Receipt id"  name="receipt_id" >
+                            <input type="number" class="form-control" placeholder="Receipt id"  name="receipt_id" value="{{ old('receipt_id') }}">
                         </div>
 
                     <input type="submit" name="time" class="btn btn-primary mt-3">

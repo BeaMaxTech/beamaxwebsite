@@ -43,11 +43,9 @@
                                 <th class="sorting" tabindex="0" aria-controls="zero-config" rowspan="1" colspan="1"
                                     aria-label="Age: activate to sort column ascending" style="width: 30px;">status</th>
                                
+                               
                                 <th class="sorting" tabindex="0" aria-controls="zero-config" rowspan="1" colspan="1"
-                                    aria-label="Salary: activate to sort column ascending" style="width: 60px;">Amount paid
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="zero-config" rowspan="1" colspan="1"
-                                    aria-label="Salary: activate to sort column ascending" style="width: 60px;">transaction_type
+                                    aria-label="Salary: activate to sort column ascending" style="width: 60px;">mode of payment
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="zero-config" rowspan="1" colspan="1"
                                     aria-label="Salary: activate to sort column ascending" style="width: 60px;">staff_id
@@ -64,15 +62,15 @@
 
                         @foreach($transactions as $transaction)
                             <tr role="row">
-                                <td class="sorting_1">{{$transaction->amount}}</td>
-                                <td>{{$transaction->description}}</td>
+                                <td class="sorting_1">{{number_format($transaction->amount)}}</td>
+                                <td>{{$transaction->type}}</td>
                                
                                 <td>{{$transaction->status}}</td>
                                
-                                <td>{{$transaction->type}}</td>
-                                <td>{{$transaction->staff_id}}</td>
+                                
                                 <td>{{$transaction->mode_of_payment}}</td>
-                                <td>{{$user->date_created}}</td>
+                                <td>{{$transaction->staff_id}}</td>
+                                <td>{{$user->created_at}}</td>
                                 <td>
                                     <div class="btn-group mb-4 mr-2" role="group">
                                         <button id="btndefault" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
